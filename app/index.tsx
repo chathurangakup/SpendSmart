@@ -5,11 +5,13 @@ import Onboarding from 'react-native-onboarding-swiper';
 
 import Lottie from '../constants/Lottie';
 import LottieView from 'lottie-react-native';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 
 const { width, height } = Dimensions.get('window');
 
 const App = () => {
+    const { styles } = useStyles(stylesheet);
 
     const handleDone = () => {
         router.push('/(login)/sign-in')
@@ -23,10 +25,28 @@ const App = () => {
         )
     }
 
+    const skipButton = (props: any) => {
+        return (
+            <TouchableOpacity style={styles.skipButtonmStyles} {...props}>
+                <Text style={styles.doneBtnTextStyles}>Skip</Text>
+            </TouchableOpacity>
+        )
+    }
+
+    const nextButton = (props: any) => {
+        return (
+            <TouchableOpacity style={styles.doneButtonmStyles} {...props}>
+                <Text style={styles.doneBtnTextStyles}>Next</Text>
+            </TouchableOpacity>
+        )
+    }
+
     return (
         <View style={{ flex: 1 }}>
             <Onboarding
                 DoneButtonComponent={doneButton}
+                SkipButtonComponent={skipButton}
+                NextButtonComponent={nextButton}
                 onDone={handleDone}
                 onSkip={handleDone}
                 bottomBarHighlight={false}
@@ -64,7 +84,7 @@ const App = () => {
     )
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
     text: {
         flex: 1
     },
@@ -83,8 +103,20 @@ const styles = StyleSheet.create({
     },
     doneBtnTextStyles: {
         fontSize: 18,
-        paddingRight: 30
+        paddingRight: 30,
+        fontFamily: 'Montserrat-BlackItalic'
+    },
+    skipButtonmStyles: {
+        paddingLeft: 50,
+        paddingTop: 20,
+        paddingBottom: 20,
+        backgroundColor: 'white',
+        borderTopRightRadius: 100,
+        borderBottomRightRadius: 100
     }
-});
+
+}))
+
+
 
 export default App;
