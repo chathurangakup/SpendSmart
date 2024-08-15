@@ -2,6 +2,7 @@ import { useFonts } from 'expo-font';
 import { SplashScreen } from 'expo-router';
 import { Stack } from 'expo-router/stack';
 import { useEffect } from 'react';
+import '@/constants/unistyles';
 
 
 export default function RootLayout() {
