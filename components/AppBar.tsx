@@ -8,7 +8,6 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 
 
-
 export const AppBar = (props: {
   title: ReactNode; navigation: { goBack: () => void; navigate: (arg0: string) => void; }; isShowBack: any;
 }) => {
@@ -49,11 +48,7 @@ export const AppBar = (props: {
   );
 };
 
-AppBar.defaultProps = {
-  profilePicImage: null,
-  isShowBack: true,
-  isShowProfile: true,
-};
+
 
 
 

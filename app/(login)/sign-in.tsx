@@ -1,10 +1,11 @@
-import { View, Text, Button, SafeAreaView, ImageBackground } from 'react-native'
+import { View, Text, Button, ImageBackground } from 'react-native'
 import React, { useState } from 'react'
 import { router } from 'expo-router'
 import { createStyleSheet, useStyles } from 'react-native-unistyles'
 import { AppBar } from '@/components/AppBar'
 import LottieView from 'lottie-react-native'
-import Lottie from '@/constants/Lottie'
+import Lottie from '@/constants/Lottie';
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 
 import TextInputCustom from '@/components/TextInputField'
@@ -17,7 +18,7 @@ import { lightTheme } from '@/constants/thems'
 const SignIn = (props: any) => {
 
   const [username, setUsername] = useState('');
-  const [isErrorUserName, setIsErrorUserName] = useState(true);
+  const [isErrorUserName, setIsErrorUserName] = useState(false);
 
   // const { loading, errorMessage } = useSelector((state: RootState) => state.login);
   //  dispatch(  changeLoadingState())
@@ -27,6 +28,8 @@ const SignIn = (props: any) => {
       // dispatch(chnageUsername(username));
       // dispatch(changeIsLogin(true));
     }
+
+    router.push('/(tabs)/home')
   };
 
   const changeUserName = (value: string) => {

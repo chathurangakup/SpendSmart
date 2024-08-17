@@ -6,6 +6,7 @@ import LottieView from 'lottie-react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import Lottie from '../constants/Lottie';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
@@ -43,7 +44,7 @@ const App = () => {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1}}>
             <Onboarding
                 DoneButtonComponent={doneButton}
                 SkipButtonComponent={skipButton}
@@ -81,7 +82,7 @@ const App = () => {
                     },
                 ]}
             />
-        </View>
+        </SafeAreaView>
     )
 }
 

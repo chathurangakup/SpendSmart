@@ -35,10 +35,6 @@ const TextInputCustom: FC<TextInputCustomProps> = ({
   );
 };
 
-TextInputCustom.defaultProps = {
-  secureTextEntry: false
-}
-  
 
 const stylesheet = createStyleSheet(theme=> ({
   input: {
