@@ -1,14 +1,16 @@
 import { router } from 'expo-router';
 import React from 'react'
-import { View, Text, StyleSheet, Button, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native'
 import Onboarding from 'react-native-onboarding-swiper';
-
-import Lottie from '../constants/Lottie';
 import LottieView from 'lottie-react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
+import Lottie from '../constants/Lottie';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const { width, height } = Dimensions.get('window');
+
+
+
 
 const App = () => {
     const { styles } = useStyles(stylesheet);
@@ -42,7 +44,7 @@ const App = () => {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1}}>
             <Onboarding
                 DoneButtonComponent={doneButton}
                 SkipButtonComponent={skipButton}
@@ -80,22 +82,23 @@ const App = () => {
                     },
                 ]}
             />
-        </View>
+        </SafeAreaView>
     )
 }
 
-const stylesheet = createStyleSheet(theme => ({
+const stylesheet = createStyleSheet((theme,rt)=> ({
     text: {
         flex: 1
     },
     lottieStyle: {
-        width: width * 0.9,
-        height: width,
+        width: rt.screen.width * 0.9 ,
+        height: rt.screen.width,
+    
     },
     doneButtonmStyles: {
-        paddingLeft: 50,
-        paddingTop: 20,
-        paddingBottom: 20,
+        paddingLeft: rt.screen.width *0.1,
+        paddingTop: rt.screen.width *0.05,
+        paddingBottom: rt.screen.width *0.05,
         backgroundColor: 'white',
         borderTopLeftRadius: 100,
         borderBottomLeftRadius: 100
@@ -107,9 +110,9 @@ const stylesheet = createStyleSheet(theme => ({
         fontFamily: 'Montserrat-BlackItalic'
     },
     skipButtonmStyles: {
-        paddingLeft: 50,
-        paddingTop: 20,
-        paddingBottom: 20,
+        paddingLeft: rt.screen.width *0.1,
+        paddingTop: rt.screen.width *0.05,
+        paddingBottom: rt.screen.width *0.05,
         backgroundColor: 'white',
         borderTopRightRadius: 100,
         borderBottomRightRadius: 100

@@ -5,7 +5,8 @@ import Step4 from '../assets/lottie/step4.json';
 import Step5 from '../assets/lottie/step5.json';
 import Step6 from '../assets/lottie/step5.json';
 import Step7 from '../assets/lottie/battle.json';
-import Step8 from '../assets/lottie/step8.json'
+import Step8 from '../assets/lottie/step8.json';
+import TeachingGirl from '../assets/lottie/loginLottie.json';
 
 
 export default {
@@ -16,5 +17,6 @@ export default {
    Step5,
    Step6,
    Step7,
-   Step8
+   Step8,
+   TeachingGirl
 }
