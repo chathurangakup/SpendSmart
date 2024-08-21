@@ -37,7 +37,6 @@ const Header: React.FC<CustomHeader> = ({ source, title }) => {
 
 const stylesheet = createStyleSheet((theme, runtime) => ({
   mainComponanet: {
-    flex: 1,
     backgroundColor: theme.colors.headercolor
   },
   subComponent: {

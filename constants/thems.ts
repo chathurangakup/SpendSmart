@@ -20,8 +20,8 @@ const sharedColors = {
     primary_dark: '#333333',
     primary_accent_light: '#4a1b88',
     primary_accent_dark: '#2f0665',
-   
 
+    
 }
 
 const hexToRGBA = (hex: string, opacity: number) => {
