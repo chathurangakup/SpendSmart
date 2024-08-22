@@ -20,8 +20,7 @@ const Home = () => {
   return (
     <SafeAreaView style={{flex:1,}}>
       <Stack.Screen
-        options={{ header: () => <Header source={Images.Profile} title='Hi Uditha' /> }
-        }
+        options={{ header: () =>  <View style={{ height:0, justifyContent: 'center', marginTop: 40  }}><Header source={Images.Profile} title='Hi Uditha' /></View> }}
       />
       <View style={styles.container}>
         <View>
@@ -73,6 +72,7 @@ const stylesheet = createStyleSheet((theme, runtime) => ({
     flex:1,
     paddingTop: runtime.screen.height / 60,
     paddingBottom:  runtime.screen.height / 12,
+    backgroundColor:'red'
 
   },
   incomes: {
