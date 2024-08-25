@@ -7,6 +7,7 @@ import Images from '@/constants/images.d'
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import AvailableBalance from '@/components/AvailableBalance'
+import BudgetForMonth from '@/components/BudgetForMonth'
 
 const Home = () => {
   const { styles } = useStyles(stylesheet);
@@ -19,8 +20,11 @@ const Home = () => {
         options={{ header: () =>  <View style={{ height:0, justifyContent: 'center', marginTop: 40  }}><Header source={Images.Profile} title='Hi Uditha' /></View> }}
       />
       <View style={styles.container}>
-        <View style={{padding:20}}>
+        <View style={styles.containerWrap}>
         <AvailableBalance balance='$3,76800.00'/>
+        </View>
+        <View style={styles.containerWrap}>
+          <BudgetForMonth budget={'$20345.00'} month='Octomber'/>
         </View>
       
        
@@ -37,6 +41,9 @@ const stylesheet = createStyleSheet((theme, runtime) => ({
     paddingBottom:  runtime.screen.height / 12,
     backgroundColor: theme.colors.white
 
+  },
+  containerWrap:{
+    padding:20
   },
   incomes: {
     gap: 10
