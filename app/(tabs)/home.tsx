@@ -8,6 +8,8 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import AvailableBalance from '@/components/AvailableBalance'
 import BudgetForMonth from '@/components/BudgetForMonth'
+import CashComponent from '@/components/CashComponent'
+import MaterialCommunityIcons from '@expo/vector-icons/build/MaterialCommunityIcons'
 
 const Home = () => {
   const { styles } = useStyles(stylesheet);
@@ -25,6 +27,18 @@ const Home = () => {
         </View>
         <View style={styles.container2Wrap}>
           <BudgetForMonth budget={'$20345.00'} month='Octomber'/>
+        </View>
+        <View style={styles.containerCash}>
+          <Text style={styles.containerCashText}>Cash</Text>
+
+          <View style={styles.cashContainer}>
+             <CashComponent backgroundColor={'#DAF7A6'} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="black" />} money='$43555.00' moneyStatus='Income'/>
+             <CashComponent backgroundColor={'#DAF7A6'} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="black" />} money='$43555.00' moneyStatus='Expences'/>
+             
+             {/* <CashComponent backgroundColor={'#DAF7A6'}/> */}
+          </View>
+
+       
         </View>
       
        
@@ -51,6 +65,22 @@ const stylesheet = createStyleSheet((theme, runtime) => ({
   container2Wrap:{
     paddingLeft:runtime.screen.height / 40,
     paddingRight: runtime.screen.height / 40,
+  },
+  containerCash:{
+    paddingTop: runtime.screen.height / 30,
+    paddingLeft:runtime.screen.height / 30,
+    paddingRight: runtime.screen.height / 40,
+    paddingBottom: runtime.screen.height / 45
+  },
+  cashContainer:{
+    flexDirection: 'row',
+    justifyContent:'space-between',
+    paddingTop: runtime.screen.height/40
+  },
+  containerCashText:{
+    fontSize: 13,
+    color:  theme.colors.black,
+    fontFamily: 'Montserrat-Bold',
   },
   incomes: {
     gap: 10
