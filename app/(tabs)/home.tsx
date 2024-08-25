@@ -20,10 +20,10 @@ const Home = () => {
         options={{ header: () =>  <View style={{ height:0, justifyContent: 'center', marginTop: 40  }}><Header source={Images.Profile} title='Hi Uditha' /></View> }}
       />
       <View style={styles.container}>
-        <View style={styles.containerWrap}>
+        <View style={styles.container1Wrap}>
         <AvailableBalance balance='$3,76800.00'/>
         </View>
-        <View style={styles.containerWrap}>
+        <View style={styles.container2Wrap}>
           <BudgetForMonth budget={'$20345.00'} month='Octomber'/>
         </View>
       
@@ -42,8 +42,15 @@ const stylesheet = createStyleSheet((theme, runtime) => ({
     backgroundColor: theme.colors.white
 
   },
-  containerWrap:{
-    padding:20
+  container1Wrap:{
+    paddingTop: runtime.screen.height / 50,
+    paddingLeft:runtime.screen.height / 40,
+    paddingRight: runtime.screen.height / 40,
+    paddingBottom: runtime.screen.height / 45
+  },
+  container2Wrap:{
+    paddingLeft:runtime.screen.height / 40,
+    paddingRight: runtime.screen.height / 40,
   },
   incomes: {
     gap: 10
