@@ -8,15 +8,16 @@ interface CashComponentProps {
     backgroundColor: string,
     ComponentIcon: any,
     money: string,
-    moneyStatus: string
+    moneyStatus: string,
+    iconBgRoundedColor: string
 }
 
-const CashComponent: React.FC<CashComponentProps> = ({ backgroundColor, ComponentIcon, money,moneyStatus }) => {
+const CashComponent: React.FC<CashComponentProps> = ({ backgroundColor, ComponentIcon, money,moneyStatus,iconBgRoundedColor }) => {
     const { styles } = useStyles(stylesheet);
     return (
         <View style={[styles.container, { backgroundColor: backgroundColor }]}>
             <View style={styles.headerContainer}>
-                <View style={styles.iconBgRounded}>
+                <View style={[styles.iconBgRounded, {backgroundColor: iconBgRoundedColor}]}>
                     {ComponentIcon}
                 </View>
                 <View style={styles.iconRight}>
@@ -25,8 +26,8 @@ const CashComponent: React.FC<CashComponentProps> = ({ backgroundColor, Componen
             </View>
 
             <View>
-                <Text>{money}</Text>
-                <Text>{moneyStatus}</Text>
+                <Text style={styles.moneyStyle}>{money}</Text>
+                <Text style={styles.moneyStatusStyle}>{moneyStatus}</Text>
             </View>
 
         </View>
@@ -43,18 +44,27 @@ const stylesheet = createStyleSheet((theme, runtime) => ({
     },
     iconBgRounded: {
         borderRadius: 30,
-        width: 40,
-        height: 40,
-        backgroundColor: '#008000',
-        padding: 8
+        width: runtime.screen.width/10,
+        height: runtime.screen.width/10,
+        padding: runtime.screen.width/55,
     },
     iconRight:{
-        padding:8
+        padding:runtime.screen.width/55,
     },
     headerContainer: {
         flexDirection: 'row',
         justifyContent:'space-between',
         flex:1
+    },
+    moneyStyle:{
+        fontSize: 15,
+        color:  theme.colors.black,
+        fontFamily: 'Montserrat-SemiBold',
+    },
+    moneyStatusStyle:{
+        fontSize: 13,
+        color:  theme.colors.black,
+        fontFamily: 'Montserrat-Italic',
     }
 }))
 

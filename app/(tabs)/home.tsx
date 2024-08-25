@@ -32,8 +32,8 @@ const Home = () => {
           <Text style={styles.containerCashText}>Cash</Text>
 
           <View style={styles.cashContainer}>
-             <CashComponent backgroundColor={'#DAF7A6'} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="black" />} money='$43555.00' moneyStatus='Income'/>
-             <CashComponent backgroundColor={'#DAF7A6'} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="black" />} money='$43555.00' moneyStatus='Expences'/>
+             <CashComponent backgroundColor={'#DCE6E5'} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000'/>
+             <CashComponent backgroundColor={'#C9C6CA'} ComponentIcon={<MaterialCommunityIcons name="purse" size={24} color="white" />} money='$43555.00' moneyStatus='Expences' iconBgRoundedColor='#C5705D'/>
              
              {/* <CashComponent backgroundColor={'#DAF7A6'}/> */}
           </View>
