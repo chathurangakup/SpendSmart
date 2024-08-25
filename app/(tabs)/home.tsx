@@ -29,12 +29,16 @@ const Home = () => {
           <BudgetForMonth budget={'$20345.00'} month='Octomber'/>
         </View>
         <View style={styles.containerCash}>
-          <Text style={styles.containerCashText}>Cash</Text>
-
+         
+        <Text style={styles.containerCashText}>Income and Expences for Octomber</Text>
           <View style={styles.cashContainer}>
-             <CashComponent backgroundColor={'#DCE6E5'} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000'/>
-             <CashComponent backgroundColor={'#C9C6CA'} ComponentIcon={<MaterialCommunityIcons name="purse" size={24} color="white" />} money='$43555.00' moneyStatus='Expences' iconBgRoundedColor='#C5705D'/>
+        
+
+             <CashComponent backgroundColor={'#DCE6E5'} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000' onPressContainer={()=>alert('lolo')} onPressPlus={()=>alert('pp')}/>
+             <CashComponent backgroundColor={'#C9C6CA'} ComponentIcon={<MaterialCommunityIcons name="purse" size={24} color="white" />} money='$43555.00' moneyStatus='Expences' iconBgRoundedColor='#C5705D' onPressContainer={()=>alert('lolof')} onPressPlus={()=>alert('ppe')}/>
              
+
+           
              {/* <CashComponent backgroundColor={'#DAF7A6'}/> */}
           </View>
 
@@ -68,19 +72,27 @@ const stylesheet = createStyleSheet((theme, runtime) => ({
   },
   containerCash:{
     paddingTop: runtime.screen.height / 30,
-    paddingLeft:runtime.screen.height / 30,
+    paddingLeft:runtime.screen.height / 60,
     paddingRight: runtime.screen.height / 40,
-    paddingBottom: runtime.screen.height / 45
+    paddingBottom: runtime.screen.height / 45,
+    backgroundColor: '#F8EDE3',
+    marginTop: runtime.screen.height / 30,
+    marginLeft:runtime.screen.height / 30,
+    marginRight: runtime.screen.height / 40,
+    marginBottom: runtime.screen.height / 45,
+    borderRadius: 20
   },
   cashContainer:{
     flexDirection: 'row',
     justifyContent:'space-between',
-    paddingTop: runtime.screen.height/40
+    paddingTop: runtime.screen.height/30,
+  
   },
   containerCashText:{
     fontSize: 13,
     color:  theme.colors.black,
     fontFamily: 'Montserrat-Bold',
+    paddingLeft:runtime.screen.height / 60,
   },
   incomes: {
     gap: 10
