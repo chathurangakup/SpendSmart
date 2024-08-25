@@ -6,11 +6,7 @@ import { Stack } from 'expo-router'
 import Images from '@/constants/images.d'
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
-import { BarChart, LineChart, PieChart, PopulationPyramid } from "react-native-gifted-charts";
-import IncomeBlock from '@/components/IncomeBlock'
-import IncomeList from '../../data/Income.json'
-import ExpenceBlock from '@/components/ExpenceBlock'
-import FloatingActionButton from '@/components/FloatingActionButton'
+import AvailableBalance from '@/components/AvailableBalance'
 
 const Home = () => {
   const { styles } = useStyles(stylesheet);
@@ -23,43 +19,10 @@ const Home = () => {
         options={{ header: () =>  <View style={{ height:0, justifyContent: 'center', marginTop: 40  }}><Header source={Images.Profile} title='Hi Uditha' /></View> }}
       />
       <View style={styles.container}>
-        <View>
-          <View style={styles.subContainer}>
-            <View style={styles.incomes}>
-              <Text style={styles.incomeText}>My <Text style={{ fontWeight: 700 }}>Income</Text></Text>
-              <Text style={styles.incomeAmount}>
-                Rs.1200 <Text style={styles.incomeSubAmount}>.00</Text>
-              </Text>
-            </View>
-            <View style={{marginRight: 20}}>
-              <PieChart data={data} donut
-                showGradient
-                semiCircle
-                sectionAutoFocus
-                focusOnPress
-                radius={90}
-                innerRadius={60}
-                innerCircleColor={'#232850'}
-                centerLabelComponent={() => {
-                  return (
-                    <View>
-                      <Text style={styles.pieChartInnerCircle}>
-                        74%
-                      </Text>
-                    </View>
-                  )
-
-                }} />
-            </View>
-          </View>
-          <View style={styles.incomeBlock}>
-            <IncomeBlock incomeList={IncomeList} />
-          </View>
-          <View style={styles.incomeBlock}>
-          <Text style={styles.incomeText}>My <Text style={{ fontWeight: 700 }}>Expence</Text></Text>
-             <ExpenceBlock/>
-          </View>
+        <View style={{padding:20}}>
+        <AvailableBalance balance='$3,76800.00'/>
         </View>
+      
        
       </View>
 
@@ -72,7 +35,7 @@ const stylesheet = createStyleSheet((theme, runtime) => ({
     flex:1,
     paddingTop: runtime.screen.height / 60,
     paddingBottom:  runtime.screen.height / 12,
-    backgroundColor:'red'
+    backgroundColor: theme.colors.white
 
   },
   incomes: {

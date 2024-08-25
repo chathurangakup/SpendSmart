@@ -14,6 +14,7 @@ const sharedFonts = {
 const sharedColors = {
     black: '#000000',
     white:'#ffffff',
+    dark_grey:'#3A474E',
     borderColors:'#666',
     headercolor: '#d6bfff',
     primary_light: '#f9f5ff',
