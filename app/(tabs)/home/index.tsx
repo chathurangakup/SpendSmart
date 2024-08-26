@@ -2,7 +2,7 @@ import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Header from '@/components/Header'
-import { Stack } from 'expo-router'
+import { router, Stack } from 'expo-router'
 import Images from '@/constants/images.d'
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
@@ -32,7 +32,7 @@ const Home = () => {
 
           <Text style={styles.containerCashText}>Income and Expences for Octomber</Text>
           <View style={styles.cashContainer}>
-            <CashComponent backgroundColor={theme.colors.light_green} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000' onPressContainer={() => alert('lolo')} onPressPlus={() => alert('pp')} />
+            <CashComponent backgroundColor={theme.colors.light_green} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000' onPressContainer={() =>  router.push('/(tabs)/home/budget')} onPressPlus={() => alert('pp')} />
             <CashComponent backgroundColor={theme.colors.light_brown} ComponentIcon={<MaterialCommunityIcons name="purse" size={24} color="white" />} money='$43555.00' moneyStatus='Expences' iconBgRoundedColor='#C5705D' onPressContainer={() => alert('lolof')} onPressPlus={() => alert('ppe')} />
           </View>
 
