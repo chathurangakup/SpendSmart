@@ -16,7 +16,7 @@ const HomeStack = () => {
     >
       {/* Optionally configure static options outside the route.*/}
       <Stack.Screen name="index"  />
-      <Stack.Screen name="budget" />
+      <Stack.Screen name="budget" options={{headerShown:false}} />
 
     </Stack>
   ) 
