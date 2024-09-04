@@ -1,5 +1,5 @@
-import { View, Text, FlatList } from 'react-native'
-import React from 'react'
+import { View, Text, FlatList,Animated } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import { BarChart, LineChart, PieChart, PopulationPyramid } from "react-native-gifted-charts";
@@ -15,6 +15,12 @@ const Budget = () => {
   { value: 30, color: '#79D2DE', text: '30%' },
   { value: 26, color: '#ED6665', text: '26%' },]
 
+  const [progress, setProgress] = useState(new Animated.Value(0));
+  const progressAnim = progress.interpolate({
+    inputRange: [0, 10],
+    outputRange: ['0%', '100%'],
+  });
+
   const expenses = [
     { "id": "1", "category": "Housing", "color": "#FF6347" },          // Tomato
     { "id": "2", "category": "Utilities", "color": "#4682B4" },        // Steel Blue
@@ -27,14 +33,25 @@ const Budget = () => {
     { "id": "9", "category": "Others", "color": "#FF0000" }
   ];
 
+
+  const renderProgressBar = () => {
+    return (
+      <View>
+        <View style={styles.InprogressAnimated}>
+          <Animated.View
+            style={[styles.animatedbarStyle, {width: progressAnim}]}
+          />
+        </View>
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <AppBar
         isShowBack={true}
         title={'Budget'}
       />
-
-
       <View style={styles.pieChartContainer}>
         <View style={{ flex: 1.2, height: 200 }}>
             <View style={styles.item}>
@@ -56,10 +73,8 @@ const Budget = () => {
               </View>
             )}
           />
-
         </View>
         <View style={{ flex: 2, padding: 10 }}>
-           
           <PieChart data={data} donut
             showGradient
             sectionAutoFocus
@@ -75,12 +90,20 @@ const Budget = () => {
                   </Text>
                 </View>
               )
-
             }} />
-
         </View>
-
+        
       </View>
+      <View style={styles.secondMainComp}>
+          <View style={styles.progressBartext}>
+              <Text style={styles.budgetForMonth}>Budget for Octomber</Text>
+              <Text  style={styles.budgetForMoney}>$2457</Text>
+          </View>
+          <View style={styles.progressbarStyle}>
+             {renderProgressBar()}
+          </View>
+      </View>
+     
 
     </SafeAreaView>
   )
@@ -122,6 +145,45 @@ const stylesheet = createStyleSheet((theme, runtime) => ({
     fontSize: 13,
     color:  theme.colors.black,
     fontFamily: 'Montserrat-SemiBold',
+  },
+  secondMainComp:{
+    borderTopEndRadius: 15, 
+    borderTopLeftRadius: 15,
+    backgroundColor:theme.colors.dark_brown_grey,
+    height: runtime.screen.height
+  },
+  progressBartext:{
+     flexDirection:'row',
+     justifyContent:'space-between'
+  },
+  budgetForMonth:{
+    fontSize: 13,
+    color: theme.colors.white,
+    fontFamily: 'Montserrat-Bold',
+    paddingTop: runtime.screen.height / 25,
+    paddingLeft: runtime.screen.height / 30,
+
+  },
+  budgetForMoney:{
+    fontSize: 22,
+    color: theme.colors.white,
+    fontFamily: 'Montserrat-Bold',
+    padding: runtime.screen.height / 30,
+  },
+  InprogressAnimated: {
+    width: '100%',
+    borderRadius: 20,
+    backgroundColor:theme.colors.yellow,
+
+  },
+  animatedbarStyle: {
+    height: 10,
+    borderRadius: 20,
+    backgroundColor: theme.colors.dark_grey,
+  },
+  progressbarStyle:{
+    paddingLeft:runtime.screen.width / 20,
+    paddingRight:runtime.screen.width / 20,
   }
 
 }))
