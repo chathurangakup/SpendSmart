@@ -26,17 +26,17 @@ const Home = () => {
           <AvailableBalance balance='$3,76800.00' />
         </View>
         <View style={styles.container2Wrap}>
-          <BudgetForMonth budget={'$20345.00'} month='Octomber' />
+          <BudgetForMonth budget={'$20345.00'} month='Octomber' onPressBtn={()=>router.push('/(tabs)/home/budget')} />
         </View>
         <View style={styles.containerCash}>
 
           <Text style={styles.containerCashText}>Income and Expences for Octomber</Text>
           <View style={styles.cashContainer}>
-            <CashComponent backgroundColor={theme.colors.light_green} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000' onPressContainer={() =>  router.push('/(tabs)/home/budget')} onPressPlus={() => alert('pp')} />
-            <CashComponent backgroundColor={theme.colors.light_brown} ComponentIcon={<MaterialCommunityIcons name="purse" size={24} color="white" />} money='$43555.00' moneyStatus='Expences' iconBgRoundedColor='#C5705D' onPressContainer={() => alert('lolof')} onPressPlus={() => alert('ppe')} />
+            <CashComponent backgroundColor={theme.colors.light_green} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000' onPressContainer={() =>  alert('clik income')} onPressPlus={() => alert('pp')} />
+            <CashComponent backgroundColor={theme.colors.light_brown} ComponentIcon={<MaterialCommunityIcons name="purse" size={24} color="white" />} money='$43555.00' moneyStatus='Expences' iconBgRoundedColor='#C5705D' onPressContainer={() => alert('click expences')} onPressPlus={() => alert('click expencess')} />
           </View>
 
-
+{}
         </View>
 
 

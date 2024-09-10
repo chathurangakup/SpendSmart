@@ -1,28 +1,32 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 interface BudgetForMonthProps {
     budget: string;
     month: string
+    onPressBtn: Function
 }
 
-const BudgetForMonth : React.FC<BudgetForMonthProps> = ({budget,month}) => {
+const BudgetForMonth : React.FC<BudgetForMonthProps> = ({budget,month,onPressBtn}) => {
   const { styles } = useStyles(stylesheet);
   return (
-    <View  style={styles.container}>
+    <TouchableOpacity onPress={()=>onPressBtn()}>
+  <View  style={styles.container}>
      
-      <View>
-            <Text style={styles.text1Style}>
-                Budget for <Text style={styles.text12Style}>{month}</Text>
-               
-            </Text>
-            <Text style={styles.text2Style}>Money Available</Text>
-      </View>
-      <View>
-        <Text style={styles.budgetStyle}>{budget}</Text>
-      </View>
-    </View>
+     <View>
+           <Text style={styles.text1Style}>
+               Budget for <Text style={styles.text12Style}>{month}</Text>
+              
+           </Text>
+           <Text style={styles.text2Style}>Money Available</Text>
+     </View>
+     <View>
+       <Text style={styles.budgetStyle}>{budget}</Text>
+     </View>
+   </View>
+    </TouchableOpacity>
+  
   )
 }
 

@@ -47,7 +47,6 @@ const SignIn = (props: any) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppBar
-        navigation={props.navigation}
         isShowBack={false}
         title={'Login'}
       />

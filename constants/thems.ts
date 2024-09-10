@@ -19,6 +19,7 @@ const sharedColors = {
     light_green: '#DBE6E5',
     dark_brown_grey: '#2E383E',
     yellow:'#F0B842',
+    off_white:'#E0E0E0',
     light_brown: '#C9C6CA',
     borderColors:'#666',
     headercolor: '#d6bfff',
