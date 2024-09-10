@@ -14,6 +14,13 @@ export default function RootLayout() {
         'Montserrat-Black' : require('../assets/fonts/Montserrat-Black.ttf'),
         'Montserrat-BlackItalic' : require('../assets/fonts/Montserrat-BlackItalic.ttf'),
         'Montserrat-Bold' : require('../assets/fonts/Montserrat-Bold.ttf'),
+        'Montserrat-Italic' : require('../assets/fonts/Montserrat-Italic.ttf'),
+        'Montserrat-Light' : require('../assets/fonts/Montserrat-Light.ttf'),
+        'Montserrat-LightItalic' : require('../assets/fonts/Montserrat-LightItalic.ttf'),
+        'Montserrat-Medium' : require('../assets/fonts/Montserrat-Medium.ttf'),
+        'Montserrat-MediumItalic' : require('../assets/fonts/Montserrat-MediumItalic.ttf'),
+        'Montserrat-Regular' : require('../assets/fonts/Montserrat-Regular.ttf'),
+        'Montserrat-SemiBold' : require('../assets/fonts/Montserrat-SemiBold.ttf'),
     })
 
 
@@ -45,12 +52,13 @@ export default function RootLayout() {
                 options={{
                     headerShown: false
                 }}></Stack.Screen>
-            <Stack.Screen name='(tabs)'
+          
+          <Stack.Screen name='(tabs)'
                 options={{
                     headerShown: false
-                }}>
+                }}></Stack.Screen>
 
-            </Stack.Screen>
+                
 
         </Stack>
 

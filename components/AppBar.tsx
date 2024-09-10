@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image, Platform } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useNavigation } from 'expo-router';
 
 
 
@@ -9,18 +10,15 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 
 export const AppBar = (props: {
-  title: ReactNode; navigation: { goBack: () => void; navigate: (arg0: string) => void; }; isShowBack: any;
+  title: ReactNode; isShowBack: any;
 }) => {
+
+  const navigation = useNavigation();
 
   const { styles } = useStyles(stylesheet);
 
-  const [loaded, setLoaded] = useState(false);
-
-
-
-
   const _backHandler = () => {
-    props.navigation.goBack();
+    navigation.goBack();
   };
 
 
@@ -57,14 +55,14 @@ const stylesheet = createStyleSheet((theme, rt) => ({
     borderRadius: 50,
     width: 50,
     height: 50,
-    backgroundColor: 'black',
+    backgroundColor: theme.colors.black,
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
   },
   titleStyles: {
-    color: 'black',
+    color: theme.colors.black,
     fontSize: 23,
     padding: 20,
     fontWeight: 'bold',
@@ -87,7 +85,7 @@ const stylesheet = createStyleSheet((theme, rt) => ({
     paddingTop: 20
   },
   image: {
-    color: 'black',
+    color: theme.colors.black,
     width: 50,
     height: 50,
     borderRadius: 50,

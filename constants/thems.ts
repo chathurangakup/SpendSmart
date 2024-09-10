@@ -12,25 +12,23 @@ const sharedFonts = {
 };
 
 const sharedColors = {
+    black: '#000000',
+    white:'#ffffff',
+    dark_grey:'#3A474E',
+    light_blue: '#4BAAC8',
+    light_green: '#DBE6E5',
+    dark_brown_grey: '#2E383E',
+    yellow:'#F0B842',
+    off_white:'#E0E0E0',
+    light_brown: '#C9C6CA',
+    borderColors:'#666',
     headercolor: '#d6bfff',
-    blood: '#ff6b6b',
-    sky: '#48dbfb',
     primary_light: '#f9f5ff',
     primary_dark: '#333333',
     primary_accent_light: '#4a1b88',
     primary_accent_dark: '#2f0665',
-    card_light: '#dcdcdc',
-    card_dark: '#454545',
-    devider_light: '#4b4b4b',
-    devider_dark: '#4b4b4b',
-    card_typography_light: '#292929',
-    card_typography_dark: '#f6f6f6',
-    disable_text_light: '#dcdcdc',
-    disable_text_dark: '#6d6d6d',
-    disable_button_light: '#bdbdbd',
-    disable_button_dark: '#4f4f4f',
-    error_toast_light: '#e61854',
-    error_toast_dark: '#f93a69',
+
+    
 }
 
 const hexToRGBA = (hex: string, opacity: number) => {
@@ -45,14 +43,8 @@ export const lightTheme = {
     colors: {
         ...sharedColors,
         backgroundColor: sharedColors.primary_light,
-        headerBGColor: sharedColors.primary_light,
-        accent: sharedColors.primary_accent_light,
-        card_typography: sharedColors.card_typography_light,
-        card: sharedColors.card_light,
-        devider: sharedColors.devider_light,
-        disable_text: sharedColors.disable_text_light,
-        disable_button: sharedColors.disable_button_light,
-        error_toast: sharedColors.error_toast_light,
+        
+       
     },
     margins: {
         sm: 2,
@@ -73,14 +65,7 @@ export const darkTheme = {
     colors: {
         ...sharedColors,
         backgroundColor: sharedColors.primary_dark,
-        headerBGColor: sharedColors.primary_dark,
-        accent: sharedColors.primary_accent_dark,
-        card_typography: sharedColors.card_typography_dark,
-        card: sharedColors.card_dark,
-        devider: sharedColors.devider_dark,
-        disable_text: sharedColors.disable_text_dark,
-        disable_button: sharedColors.disable_button_dark,
-        error_toast: sharedColors.error_toast_dark,
+    
     },
     margins: {
         sm: 2,
@@ -97,29 +82,29 @@ export const darkTheme = {
     // add any keys/functions/objects/arrays you want!
 } as const
 
-export const premiumTheme = {
-    colors: {
-        ...sharedColors,
-        backgroundColor: sharedColors.sky,
-        headerBGColor: sharedColors.sky,
-        card_typography: '#76278f',
-        card: sharedColors.blood,
-        devider: '#4b4b4b',
-        disable_text: sharedColors.blood,
-        disable_button: sharedColors.sky,
-        error_toast: sharedColors.blood,
-    },
-    margins: {
-        sm: 2,
-        md: 4,
-        lg: 8,
-        xl: 12
-    },
-    fonts: {
-        ...sharedFonts,
-    },
-    utils: {
-        hexToRGBA
-    }
-    // add any keys/functions/objects/arrays you want!
-} as const
+// export const premiumTheme = {
+//     colors: {
+//         ...sharedColors,
+//         backgroundColor: sharedColors.sky,
+//         headerBGColor: sharedColors.sky,
+//         card_typography: '#76278f',
+//         card: sharedColors.blood,
+//         devider: '#4b4b4b',
+//         disable_text: sharedColors.blood,
+//         disable_button: sharedColors.sky,
+//         error_toast: sharedColors.blood,
+//     },
+//     margins: {
+//         sm: 2,
+//         md: 4,
+//         lg: 8,
+//         xl: 12
+//     },
+//     fonts: {
+//         ...sharedFonts,
+//     },
+//     utils: {
+//         hexToRGBA
+//     }
+//     // add any keys/functions/objects/arrays you want!
+// } as const

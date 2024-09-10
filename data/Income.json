@@ -1,0 +1,31 @@
+
+[
+    {
+        "id": 1,
+        "name": "Sallary",
+        "amount": "40000.00",
+        "color": "purple"
+
+    },
+    {
+        "id": 2,
+        "name": "Freelance",
+        "amount": "9000.00",
+        "color": "green"
+
+    },
+    {
+        "id": 3,
+        "name": "Busness",
+        "amount": "8000.00",
+        "color": "red"
+
+    },
+    {
+        "id": 4,
+        "name": "House",
+        "amount": "700.00",
+        "color": "rose"
+
+    }
+]
