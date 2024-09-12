@@ -25,7 +25,7 @@ const CashComponent: React.FC<CashComponentProps> = ({ backgroundColor, Componen
                 </View>
                 <View style={styles.iconRight}>
                     <TouchableOpacity onPress={()=>onPressPlus()}>
-                    <AntDesign name="pluscircle" size={24} color="black"  />
+                    <AntDesign name="pluscircle" size={30} color="black"  />
                     </TouchableOpacity>
                  
                 </View>

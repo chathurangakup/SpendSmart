@@ -1,5 +1,5 @@
-import { View, Text, ScrollView } from 'react-native'
-import React from 'react'
+import { View, Text, ScrollView, Platform } from 'react-native'
+import React, { useCallback, useMemo, useRef } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Header from '@/components/Header'
 import { router, Stack } from 'expo-router'
@@ -10,12 +10,53 @@ import AvailableBalance from '@/components/AvailableBalance'
 import BudgetForMonth from '@/components/BudgetForMonth'
 import CashComponent from '@/components/CashComponent'
 import MaterialCommunityIcons from '@expo/vector-icons/build/MaterialCommunityIcons'
+import { showSlideUpPanelLogout } from '@/app/utils/utils'
+import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 
 const Home = () => {
   const { styles, theme } = useStyles(stylesheet);
   const data = [{ value: 54, color: '#177AD5', text: '54%' },
   { value: 30, color: '#79D2DE', text: '30%' },
   { value: 26, color: '#ED6665', text: '26%' },]
+
+
+  const logoutClick = () => {
+    showSlideUpPanelLogout(
+      'Logout',
+      '#000',
+      'If you log out, all of your completed lesson data will be cleared as well.',
+      true,
+      'Cancel',
+      () => {
+        try {
+          
+        } catch (e) {
+          console.log(`${Platform.OS} interstitial load error: ${e}`);
+        }
+      },
+      'OK',
+      () => {
+      },
+      'Images.Logout',
+    )
+
+  
+  }
+
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
+  // variables
+  const snapPoints = useMemo(() => ['25%', '50%'], []);
+
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Stack.Screen
@@ -32,15 +73,21 @@ const Home = () => {
 
           <Text style={styles.containerCashText}>Income and Expences for Octomber</Text>
           <View style={styles.cashContainer}>
-            <CashComponent backgroundColor={theme.colors.light_green} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000' onPressContainer={() =>  alert('clik income')} onPressPlus={() => alert('pp')} />
-            <CashComponent backgroundColor={theme.colors.light_brown} ComponentIcon={<MaterialCommunityIcons name="purse" size={24} color="white" />} money='$43555.00' moneyStatus='Expences' iconBgRoundedColor='#C5705D' onPressContainer={() => alert('click expences')} onPressPlus={() => alert('click expencess')} />
+            <CashComponent backgroundColor={theme.colors.light_green} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000' onPressContainer={() => router.push('/(tabs)/home/incomeexpences/1')} onPressPlus={() =>logoutClick()} />
+            <CashComponent backgroundColor={theme.colors.light_brown} ComponentIcon={<MaterialCommunityIcons name="purse" size={24} color="white" />} money='$43555.00' moneyStatus='Expences' iconBgRoundedColor='#C5705D' onPressContainer={() => router.push('/(tabs)/home/incomeexpences/2')} onPressPlus={() => handlePresentModalPress()} />
           </View>
-
-{}
         </View>
-
-
       </View>
+      <BottomSheetModal
+          ref={bottomSheetModalRef}
+          index={1}
+          snapPoints={snapPoints}
+          onChange={handleSheetChanges}
+        >
+          <BottomSheetView>
+            <Text>Awesome 🎉</Text>
+          </BottomSheetView>
+        </BottomSheetModal>
 
     </SafeAreaView>
   )

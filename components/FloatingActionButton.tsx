@@ -1,29 +1,26 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'; // You can change the icon set if needed
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 interface FloatingActionButtonProps {
     onPress: () => void;
   }
 
 const FloatingActionButton : React.FC<FloatingActionButtonProps> = ({ onPress }) => {
+  const { styles } = useStyles(stylesheet);
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.fab} onPress={onPress}>
-        <MaterialIcons name="add" size={24} color="white" />
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity style={styles.fab} onPress={onPress}>
+      <MaterialIcons name="add" size={24} color="white" />
+    </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    padding: 16,
-  },
+const stylesheet = createStyleSheet((theme, runtime) => ({
   fab: {
+    position: 'absolute', // This will position the FAB on the screen
+    right: 16,  // Distance from the right edge
+    bottom: 16, // Distance from the bottom edge
     width: 56,
     height: 56,
     borderRadius: 28,
@@ -36,6 +33,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5,
   },
-});
+}));
 
 export default FloatingActionButton;
