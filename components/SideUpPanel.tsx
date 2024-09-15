@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CustomButton from './CustomButton';
 import { RootState } from '@/app/store';
 import { changeSlideUpObj } from '@/app/slices/CommonSlice';
-import { expenses } from '@/app/utils/utils';
+import { cardCashData, expenses, incomes } from '@/app/utils/utils';
 import TextInputCustom from './TextInputField';
 
 
@@ -20,6 +20,7 @@ const SideUpPanel = (props: any) => {
   const { slideUpPanelConfig } = useSelector((state: RootState) => state.common);
   const snapPoints = useMemo(() => ['25%', '50%', '75%', '90%', '100%'], [])
 
+
   const { styles } = useStyles(stylesheet);
 
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
@@ -30,6 +31,16 @@ const SideUpPanel = (props: any) => {
   const handleSheetChanges = useCallback((index: number) => {
     console.log('handleSheetChanges', index);
   }, []);
+
+  // State to track the selected id
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  // Function to handle item selection
+  const handleSelect = (id: number) => {
+    setSelectedId(id); // Set the clicked item's id as the selected id
+  };
+
+
 
 
   useEffect(() => {
@@ -116,6 +127,18 @@ const SideUpPanel = (props: any) => {
     );
   };
 
+  const renderItemCardCash = ({ item }: { item: { id: number; type: string } }) => (
+    <TouchableOpacity
+      style={[
+        styles.itemCardCash,
+        selectedId === item.id ? styles.selectedItem : null, // Apply selected style if the item is selected
+      ]}
+      onPress={() => handleSelect(item.id)}
+    >
+      <Text style={styles.text}>{item.type}</Text>
+    </TouchableOpacity>
+  );
+
 
   // renders
   return (
@@ -131,47 +154,79 @@ const SideUpPanel = (props: any) => {
             {slideUpPanelConfig?.payload?.title}
           </Text>
         </View>
-        <View style={styles.container}>
-          <FlatList
-            data={expenses}
-            renderItem={renderItem}
-            numColumns={3}  // Show 3 items per row 
-            keyExtractor={(item) => item.id}
-            extraData={selectedCategory}
-            showsVerticalScrollIndicator={false}  // Re-render when selection changes
-          />
-        </View>
 
-        <TextInputCustom
-          value={'Amount'}
-          onChangeText={(value) => { }}
-          placeholder="Enter Username"
-        />
-
-        <View style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
-          <TouchableOpacity onPress={showDatePicker} style={styles.button}>
-            <Text style={styles.buttonText}>Select Date</Text>
-          </TouchableOpacity>
-
-          {show && (
-            <DateTimePicker
-              value={date}
-              mode="date"  // Date picker mode
-              display="default"
-              onChange={onChange}
+        <View style={styles.mainContainer}>
+          <View style={styles.container}>
+            <Text style={styles.textName}>Expences Type</Text>
+            <FlatList
+              data={ slideUpPanelConfig?.payload?.type=='in' ?incomes:expenses}
+              renderItem={renderItem}
+              numColumns={3}  // Show 3 items per row 
+              keyExtractor={(item) => item.id}
+              extraData={selectedCategory}
+              showsVerticalScrollIndicator={false}  // Re-render when selection changes
             />
-          )}
+          </View>
+          <View style={styles.subComponent}>
+            <Text style={styles.textName}>Amount</Text>
+            <TextInputCustom
+              value={'Enter Amount'}
+              onChangeText={(value) => { }}
+              placeholder="Enter Username"
+            />
+          </View>
 
-          {/* Display the selected date */}
-          <Text style={{ marginTop: 20 }}>
-            {date.toLocaleDateString()}
-          </Text>
+
+          <View style={styles.subComponent}>
+            <Text style={styles.textName}>Select Date</Text>
+            <View style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row', paddingRight: 30, paddingLeft: 10, paddingTop: 5, paddingBottom: 10 }}>
+              <TouchableOpacity onPress={showDatePicker} style={styles.button}>
+                <Text style={styles.buttonText}>Select Date</Text>
+              </TouchableOpacity>
+
+              {show && (
+                <DateTimePicker
+                  value={date}
+                  mode="date"  // Date picker mode
+                  display="default"
+                  onChange={onChange}
+                />
+              )}
+
+              {/* Display the selected date */}
+              <Text>
+                {date.toLocaleDateString()}
+              </Text>
+            </View>
+          </View>
+
+          <View style={styles.subComponent}>
+            <Text style={styles.textName}>Description</Text>
+            <TextInputCustom
+              value={'description'}
+              onChangeText={(value) => { }}
+              placeholder="Enter Username"
+            />
+          </View>
+
+          <View style={styles.subComponent}>
+            <Text style={styles.textName}>Expence method</Text>
+            <FlatList
+              data={cardCashData}
+              renderItem={renderItemCardCash}
+              numColumns={2}  // Sh
+              keyExtractor={(item) => item.id.toString()}
+              extraData={selectedId} // Make FlatList re-render when selectedId changes
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+
+          <View style={{ width: 200, padding:10, alignSelf:'center'}}>
+            <CustomButton title="Add" onPress={() => { }} buttonStyle={[{ backgroundColor: 'black' }]} disabled={false} />
+          </View>
+
         </View>
-        <TextInputCustom
-          value={'description'}
-          onChangeText={(value) => { }}
-          placeholder="Enter Username"
-        />
+
 
       </BottomSheetView>
     </BottomSheetModal>
@@ -183,15 +238,15 @@ const SideUpPanel = (props: any) => {
 const stylesheet = createStyleSheet((theme, runtime) => ({
   titleSetle: { fontWeight: 'bold', fontSize: 22, fontFamily: 'Quicksand-Medium' },
   container: {
-    marginTop: 50,
+    marginTop: (runtime.screen.height / 90),
+    margin: 10
   },
   item: {
-    width: (runtime.screen.width / 3) - 20,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 5,
+    padding: (runtime.screen.width / 100),
     marginVertical: 8,
-    marginHorizontal: 8,
+    marginHorizontal: (runtime.screen.width / 190),
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#ddd',
@@ -214,20 +269,52 @@ const stylesheet = createStyleSheet((theme, runtime) => ({
   },
   button: {
     backgroundColor: '#6200EE',  // Beautiful purple color for the button
-    paddingVertical: 12,
-    paddingHorizontal: 25,
+    paddingVertical: 8,
+    paddingHorizontal: 20,
     borderRadius: 25,  // Rounded corners
     elevation: 3,  // Shadow for Android
     shadowColor: '#000',  // Shadow for iOS
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 1.5 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
   },
   buttonText: {
     color: '#FFFFFF',  // White text color
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: 'bold',
   },
+  textName: {
+    fontSize: 13,
+    color: theme.colors.black,
+    fontFamily: 'Montserrat-Bold',
+    paddingLeft: runtime.screen.height / 60,
+    paddingTop: runtime.screen.height / 150,
+
+  },
+  itemCardCash: {
+    padding: runtime.screen.width / 60,
+    marginVertical: runtime.screen.width / 110,
+    marginHorizontal: runtime.screen.width / 110,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    width: (runtime.screen.width) * 20 / 100,
+    alignItems: 'center',
+  },
+  selectedItem: {
+    backgroundColor: '#add8e6', // Light blue background for selected item
+    borderColor: '#007bff', // Blue border for selected item
+  },
+  text: {
+    fontSize: 13,
+    fontFamily: 'Montserrat-Bold',
+  },
+  mainContainer: {
+    marginLeft: runtime.screen.height / 60,
+  },
+  subComponent: {
+    marginRight: runtime.screen.height / 60,
+  }
 }));
 
 

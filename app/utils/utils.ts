@@ -13,6 +13,24 @@ export const expenses = [
   { "id": "9", "category": "Others", "color": "#FF0000" }
 ];
 
+export const incomes = [
+  { "id": "1", "category": "Salary", "color": "#2E8B57" },         // Sea Green
+  { "id": "2", "category": "Investments", "color": "#DAA520" },    // Goldenrod
+  { "id": "3", "category": "Business", "color": "#4682B4" },       // Steel Blue
+  { "id": "4", "category": "Freelancing", "color": "#8B0000" },    // Dark Red
+  { "id": "5", "category": "Rental Income", "color": "#D2691E" },  // Chocolate
+  { "id": "6", "category": "Interest", "color": "#6A5ACD" },       // Slate Blue   
+  { "id": "8", "category": "Others", "color": "#A52A2A" }          // Brown
+];
+
+
+export const cardCashData = [
+  { "id": 1, "type": "Cash", "color": "#FF6347"},   
+  { "id": 2, "type": "Card", "color": "#FF6347"},               
+
+];
+
+
 export const showSlideUpPanel = (
     title: any,
     titleColor:any,
@@ -46,9 +64,10 @@ export const showSlideUpPanel = (
   };
 
 
-  export const showSlideUpPanelLogout = (
+  export const showSlideUpPanelIncomeExpence = (
     title: any,
     titleColor:any,
+    type:string,
     msg: any,
     twoButtons: boolean,
     leftBtnText: any,
@@ -64,6 +83,7 @@ export const showSlideUpPanel = (
         visible: true,
         title,
         titleColor,
+        type,
         leftBtnText,
         onPressLeft,
         rightBtnText,

@@ -41,8 +41,9 @@ const stylesheet = createStyleSheet(theme=> ({
         borderRadius: 100,
         color: 'black',
         paddingHorizontal: 20,
-        width: width/1.5,
-        backgroundColor: theme.colors.primary_light,
+        backgroundColor: theme.colors.white,
+        borderWidth: 0.5,
+        borderColor: theme.colors.light_black,
         marginVertical: 10,
         height: 40,
         

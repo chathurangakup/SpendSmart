@@ -10,7 +10,7 @@ import AvailableBalance from '@/components/AvailableBalance'
 import BudgetForMonth from '@/components/BudgetForMonth'
 import CashComponent from '@/components/CashComponent'
 import MaterialCommunityIcons from '@expo/vector-icons/build/MaterialCommunityIcons'
-import { showSlideUpPanelLogout } from '@/app/utils/utils'
+import { showSlideUpPanelIncomeExpence } from '@/app/utils/utils'
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet'
 
 const Home = () => {
@@ -20,10 +20,11 @@ const Home = () => {
   { value: 26, color: '#ED6665', text: '26%' },]
 
 
-  const logoutClick = () => {
-    showSlideUpPanelLogout(
-      'Logout',
+  const incomeExpencesClick = (title: string, type:string) => {
+    showSlideUpPanelIncomeExpence(
+      title,
       '#000',
+      type,
       'If you log out, all of your completed lesson data will be cleared as well.',
       true,
       'Cancel',
@@ -73,8 +74,8 @@ const Home = () => {
 
           <Text style={styles.containerCashText}>Income and Expences for Octomber</Text>
           <View style={styles.cashContainer}>
-            <CashComponent backgroundColor={theme.colors.light_green} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000' onPressContainer={() => router.push('/(tabs)/home/incomeexpences/1')} onPressPlus={() =>logoutClick()} />
-            <CashComponent backgroundColor={theme.colors.light_brown} ComponentIcon={<MaterialCommunityIcons name="purse" size={24} color="white" />} money='$43555.00' moneyStatus='Expences' iconBgRoundedColor='#C5705D' onPressContainer={() => router.push('/(tabs)/home/incomeexpences/2')} onPressPlus={() => handlePresentModalPress()} />
+            <CashComponent backgroundColor={theme.colors.light_green} ComponentIcon={<MaterialCommunityIcons name="home-analytics" size={24} color="white" />} money='$43555.00' moneyStatus='Income' iconBgRoundedColor='#008000' onPressContainer={() => router.push('/(tabs)/home/incomeexpences/1')} onPressPlus={() =>incomeExpencesClick('Income', 'in')} />
+            <CashComponent backgroundColor={theme.colors.light_brown} ComponentIcon={<MaterialCommunityIcons name="purse" size={24} color="white" />} money='$43555.00' moneyStatus='Expences' iconBgRoundedColor='#C5705D' onPressContainer={() => router.push('/(tabs)/home/incomeexpences/2')} onPressPlus={() => incomeExpencesClick('Expences', 'ex')} />
           </View>
         </View>
       </View>
