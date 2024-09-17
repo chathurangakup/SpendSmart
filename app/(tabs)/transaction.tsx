@@ -1,94 +1,102 @@
-import { View, Text, FlatList } from 'react-native'
-import React from 'react'
-import { Calendar } from 'react-native-calendars';
+import Calendar from '@/components/Calender';
+import Header from '@/components/Header';
+import { Stack } from 'expo-router';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Dimensions } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
-import Entypo from '@expo/vector-icons/build/Entypo';
 
-const Transaction = () => {
-    const { styles } = useStyles(stylesheet);
-    const dataList = [
-        { "id": "1", "category": "Housing", "color": "#FF6347", "date": "10 jan 2010", "price": '$5656', "status": 'cash' },          // Tomato
-        { "id": "2", "category": "Utilities", "color": "#4682B4", "date": "10 jan 2010", "price": '$5656', "status": 'cash' },        // Steel Blue
-        { "id": "3", "category": "Food", "color": "#FFD700", "date": "10 jan 2010", "price": '$5656', "status": 'cash' },             // Gold
-        { "id": "4", "category": "Transportation", "color": "#32CD32", "date": "10 jan 2010", "price": '$5656', "status": 'cash' },   // Lime Green
-        { "id": "5", "category": "Health and Insurance", "color": "#8A2BE2", "date": "10 jan 2010", "price": '$5656', "status": 'cash' }, // Blue Violet
-        { "id": "6", "category": "Personal Care and Household Supplies", "color": "#FF69B4", "date": "10 jan 2010", "price": '$5656', "status": 'cash' }, // Hot Pink
-        { "id": "7", "category": "Savings and Debt Payments", "color": "#20B2AA", "date": "10 jan 2010", "price": '$5656', "status": 'cash' }, // Light Sea Green
-        { "id": "8", "category": "Entertainment and Miscellaneous", "color": "#FF4500", "date": "10 jan 2010", "price": '$5656', "status": 'cash' }, // Orange Red
-        { "id": "9", "category": "Others", "color": "#FF0000", "date": "10 jan 2010", "price": '$5656', "status": 'cash' }
-      ];
+import Images from '@/constants/images.d'
 
-    return (
-        <View>
-            <View style={{ flex:0.5}}>
-                <Calendar
-                    // Customize the appearance of the calendar
-                    style={{
-                        borderWidth: 1,
-                        borderColor: 'gray',
-                        height: 350
-                    }}
-                    // Specify the current date
-                    current={'2012-03-01'}
-                    // Callback that gets called when the user selects a day
-                    onDayPress={day => {
-                        console.log('selected day', day);
-                    }}
-                    // Mark specific dates as marked
-                    markedDates={{
-                        '2012-03-01': { selected: true, marked: true, selectedColor: 'blue' },
-                        '2012-03-02': { marked: true },
-                        '2012-03-03': { selected: true, marked: true, selectedColor: 'blue' }
-                    }}
-                />
-            </View>
-            <View style={styles.flatlistStyles}>
-            <FlatList
-            data={dataList}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <View style={styles.itemBudget}>
-                <View style={{ width: 60, height:60,backgroundColor:'red', padding:10,borderRadius:10, alignItems:'center', margin:10, justifyContent:'center' }}>
-                  <Entypo name="home" size={24} color="black" />
-                </View>
-                <View style={{ flex: 1, paddingTop: 20 }}>
-                  <Text>{item.category}</Text>
-                  <Text>{item.date}</Text>
-                </View>
-                <View style={{ flex: 0.5,paddingTop: 20 }}>
-                  <Text>{item.price}</Text>
-                  <Text>{item.status}</Text>
-                </View>
-              </View>
-            )}
-          />
-            </View>
+const AnimatedTabs = () => {
+  const { styles,theme } = useStyles(stylesheet);
+  const [activeTab, setActiveTab] = useState(0);
+  const translateX = new Animated.Value(0);
+  const {width, height} = Dimensions.get('window');
+  const [selectedDate, setSelectedDate] = useState(null);
 
-        </View>
-    )
-}
+  const handleTabPress = (index: number) => {
+    setActiveTab(index);
+    Animated.spring(translateX, {
+      toValue: index === 0 ? 0 : width/2, // Adjust this value based on your layout
+      useNativeDriver: true,
+    }).start();
+  };
 
+  return (
+    <View style={styles.container}>
+       <Stack.Screen
+        options={{ header: () => <View style={{ height: 0, justifyContent: 'center', marginTop: 40 }}><Header source={Images.Profile} title='Hi Uditha' /></View> }}
+      />
+        <Calendar onSelectDate={setSelectedDate} selected={selectedDate} />
+      <View style={styles.tabContainer}>
+        <TouchableOpacity onPress={() => handleTabPress(0)} style={styles.tab}>
+          <Text style={activeTab === 0 ? styles.activeTabText : styles.tabText}>Income</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleTabPress(1)} style={styles.tab}>
+          <Text style={activeTab === 1 ? styles.activeTabText : styles.tabText}>Expenses</Text>
+        </TouchableOpacity>
+        <Animated.View style={[styles.activeTabIndicator, { transform: [{ translateX }] }]} />
+      </View>
+
+      <View style={styles.contentContainer}>
+        {activeTab === 0 ? (
+          <Text style={styles.contentText}>Income Content</Text>
+        ) : (
+          <Text style={styles.contentText}>Expenses Content</Text>
+        )}
+      </View>
+    </View>
+  );
+};
 
 const stylesheet = createStyleSheet((theme, runtime) => ({
-    itemBudget: {
-        flexDirection: 'row',
-        backgroundColor: theme.colors.white,
-        alignSelf:'center',
-        height: 80,
-        margin:10,
-        borderRadius:20,
-        
-      },
-      flatlistStyles: {
-        borderTopEndRadius: 15,
-        borderTopLeftRadius: 15,
-        backgroundColor: theme.colors.off_white,
-        height: runtime.screen.height,
-        marginTop: runtime.screen.height /2.4,
-        marginBottom:runtime.screen.height/5,
+  container: {
+    flex: 1,
+    paddingTop: runtime.screen.width/20,
+  },
+  tabContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    position: 'relative',
+    backgroundColor: '#f2f2f2',
+    borderRadius: 25,
+    paddingVertical: runtime.screen.width/40,
+    paddingHorizontal: runtime.screen.width/20,
+  },
+  tab: {
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tabText: {
+    fontSize: 16,
+    color: '#888',
+  },
+  activeTabText: {
+    fontSize: 16,
+    color: '#000',
+    fontWeight: 'bold',
+  },
+  activeTabIndicator: {
+    flex:1,
+    position: 'absolute',
+    bottom: 0,
+    width: runtime.screen.width/2,
+    height: 4,
+    backgroundColor: '#4CAF50', // Color for the active tab underline
+    borderRadius: 2,
 
-    
-      },
-}))
+  },
+  contentContainer: {
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  contentText: {
+    fontSize: 18,
+    color: '#333',
+  },
+}));
 
-export default Transaction;
+export default AnimatedTabs;

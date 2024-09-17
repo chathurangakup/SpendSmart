@@ -10,8 +10,9 @@ import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import SideUpPanel from '@/components/SideUpPanel';
 
 
-function RootLayout() {
+ function RootLayout() {
     SplashScreen.preventAutoHideAsync()
+  
 
     const [fontsLoaded, error] = useFonts({
         'Montserrat-Black': require('../assets/fonts/Montserrat-Black.ttf'),
@@ -27,16 +28,23 @@ function RootLayout() {
     })
 
 
+
+     
+
+
+
+
     useEffect(() => {
         if (error) throw error;
         if (fontsLoaded) SplashScreen.hideAsync();
     }, [fontsLoaded, error])
 
-
     if (!fontsLoaded && !error) return null;
+
 
     return (
         <Provider store={store}>
+      
             <BottomSheetModalProvider>
             <SideUpPanel /> 
                 <Stack
@@ -65,7 +73,8 @@ function RootLayout() {
                         }}></Stack.Screen>
                         
                 </Stack>
-            </BottomSheetModalProvider>       
+            </BottomSheetModalProvider>    
+
         </Provider>
 
 
@@ -73,3 +82,7 @@ function RootLayout() {
 
 }
 export default gestureHandlerRootHOC(RootLayout);
+
+function fetchData() {
+    throw new Error('Function not implemented.');
+}
