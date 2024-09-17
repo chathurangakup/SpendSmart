@@ -7,6 +7,7 @@ import { BarChart, LineChart, PieChart, PopulationPyramid } from "react-native-g
 import { AppBar } from '@/components/AppBar';
 import Dot from '@/components/Dot';
 import Entypo from '@expo/vector-icons/build/Entypo';
+import { expenses } from '@/app/utils/utils';
 
 
 
@@ -22,17 +23,6 @@ const Budget = () => {
     outputRange: ['0%', '100%'],
   });
 
-  const expenses = [
-    { "id": "1", "category": "Housing", "color": "#FF6347" },          // Tomato
-    { "id": "2", "category": "Utilities", "color": "#4682B4" },        // Steel Blue
-    { "id": "3", "category": "Food", "color": "#FFD700" },             // Gold
-    { "id": "4", "category": "Transportation", "color": "#32CD32" },   // Lime Green
-    { "id": "5", "category": "Health and Insurance", "color": "#8A2BE2" }, // Blue Violet
-    { "id": "6", "category": "Personal Care and Household Supplies", "color": "#FF69B4" }, // Hot Pink
-    { "id": "7", "category": "Savings and Debt Payments", "color": "#20B2AA" }, // Light Sea Green
-    { "id": "8", "category": "Entertainment and Miscellaneous", "color": "#FF4500" }, // Orange Red
-    { "id": "9", "category": "Others", "color": "#FF0000" }
-  ];
 
   const dataList = [
     { "id": "1", "category": "Housing", "color": "#FF6347", "date": "10 jan 2010", "price": '$5656', "status": 'cash' },          // Tomato

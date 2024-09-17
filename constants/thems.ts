@@ -13,6 +13,7 @@ const sharedFonts = {
 
 const sharedColors = {
     black: '#000000',
+    light_black:'#818181',
     white:'#ffffff',
     dark_grey:'#3A474E',
     light_blue: '#4BAAC8',
@@ -27,6 +28,7 @@ const sharedColors = {
     primary_dark: '#333333',
     primary_accent_light: '#4a1b88',
     primary_accent_dark: '#2f0665',
+
 
     
 }

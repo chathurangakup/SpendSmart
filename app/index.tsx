@@ -8,10 +8,6 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import Lottie from '../constants/Lottie';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-
-
-
-
 const App = () => {
     const { styles } = useStyles(stylesheet);
 
