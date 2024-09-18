@@ -1,6 +1,5 @@
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { Calendar } from 'react-native-calendars';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import Entypo from '@expo/vector-icons/build/Entypo';
 import { AppBar } from '@/components/AppBar';
