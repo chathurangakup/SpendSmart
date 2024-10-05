@@ -8,12 +8,15 @@ import { store } from './store';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import SideUpPanel from '@/components/SideUpPanel';
+import { createtableexpence, createtableincome } from './utils/sqlitedb';
 
 
  function RootLayout() {
     SplashScreen.preventAutoHideAsync()
-  
+    createtableexpence();
+    createtableincome();
 
+    
     const [fontsLoaded, error] = useFonts({
         'Montserrat-Black': require('../assets/fonts/Montserrat-Black.ttf'),
         'Montserrat-BlackItalic': require('../assets/fonts/Montserrat-BlackItalic.ttf'),
@@ -29,11 +32,7 @@ import SideUpPanel from '@/components/SideUpPanel';
 
 
 
-     
-
-
-
-
+    
     useEffect(() => {
         if (error) throw error;
         if (fontsLoaded) SplashScreen.hideAsync();
